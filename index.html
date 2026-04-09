@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Name — Data & AI Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f1e35;
+    --navy-mid: #1a3050;
+    --accent: #1e6fff;
+    --accent-light: #e8f0fe;
+    --accent-mid: #c0d4fc;
+    --text: #111827;
+    --text-mid: #374151;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --bg: #ffffff;
+    --bg-soft: #f8f9fc;
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--navy);
+    color: #fff !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.875rem !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 5% 4rem;
+    background: linear-gradient(160deg, #f0f4ff 0%, #ffffff 55%, #f8f9fc 100%);
+    position: relative; overflow: hidden;
+  }
+  #home::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, #dce8ff 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+  }
+  .hero-tag span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.15;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--navy);
+    color: #fff;
+    padding: 0.75rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--navy);
+    padding: 0.75rem 1.6rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.9rem;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+  .hero-card {
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    box-shadow: 0 8px 40px rgba(15,30,53,0.07);
+    position: relative;
+  }
+  .hero-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem; color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero-card h3 {
+    font-size: 1rem; font-weight: 500;
+    color: var(--navy); margin-bottom: 0.2rem;
+  }
+  .hero-card .role {
+    font-size: 0.82rem; color: var(--accent); font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+  .chip-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .chip {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+  }
+  .chip.blue { background: var(--accent-light); border-color: var(--accent-mid); color: var(--accent); }
+  .avail-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.78rem; color: #15803d;
+    background: #f0fdf4; border: 1px solid #bbf7d0;
+    padding: 0.3rem 0.8rem; border-radius: 100px;
+  }
+  .avail-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
+
+  /* ── SECTION LAYOUT ── */
+  section { padding: 6rem 5%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .section-desc { color: var(--text-muted); font-size: 1rem; max-width: 580px; margin-bottom: 3rem; font-weight: 300; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg-soft); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { box-shadow: 0 6px 24px rgba(15,30,53,0.08); transform: translateY(-2px); }
+  .skill-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; margin-bottom: 1rem;
+  }
+  .skill-card h4 { font-size: 0.9rem; font-weight: 500; color: var(--navy); margin-bottom: 0.65rem; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.72rem; color: var(--text-muted);
+    background: var(--bg-soft); border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem; border-radius: 100px;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { box-shadow: 0 8px 32px rgba(15,30,53,0.1); transform: translateY(-2px); }
+  .project-banner {
+    height: 6px;
+    background: linear-gradient(90deg, var(--navy), var(--accent));
+  }
+  .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .project-type {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem;
+  }
+  .project-card h3 {
+    font-size: 1.05rem; font-weight: 500;
+    color: var(--navy); margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .project-card p {
+    font-size: 0.875rem; color: var(--text-muted);
+    line-height: 1.6; margin-bottom: 1.25rem; flex: 1;
+    font-weight: 300;
+  }
+  .project-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1rem; border-top: 1px solid var(--border);
+  }
+  .project-link {
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--accent); text-decoration: none;
+    display: flex; align-items: center; gap: 4px;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 8px; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg-soft); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 6px; bottom: 6px;
+    width: 1.5px; background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: -2rem;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    top: 5px;
+    transform: translateX(-5.25px);
+  }
+  .exp-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem; }
+  .exp-title { font-size: 1rem; font-weight: 500; color: var(--navy); }
+  .exp-date { font-size: 0.8rem; color: var(--text-muted); background: var(--bg-soft); border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 100px; white-space: nowrap; }
+  .exp-company { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.75rem; font-weight: 400; }
+  .exp-card ul { padding-left: 1.1rem; }
+  .exp-card li { font-size: 0.875rem; color: var(--text-mid); margin-bottom: 0.4rem; line-height: 1.6; font-weight: 300; }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .edu-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+  .edu-card:hover { box-shadow: 0 4px 16px rgba(15,30,53,0.07); }
+  .edu-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; margin-bottom: 1rem;
+  }
+  .edu-degree { font-size: 0.95rem; font-weight: 500; color: var(--navy); margin-bottom: 0.2rem; }
+  .edu-school { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.5rem; }
+  .edu-year { font-size: 0.78rem; color: var(--text-muted); }
+  .edu-note { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.5rem; font-weight: 300; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  #contact .section-label { color: #93c5fd; }
+  #contact h2 { color: #fff; }
+  #contact .section-desc { color: #94a3b8; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.8rem; color: #94a3b8; font-weight: 400; }
+  .form-group input, .form-group textarea, .form-group select {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: #4b5563; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .btn-send {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+  .btn-send:hover { background: #1558dd; transform: translateY(-1px); }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .contact-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .contact-item h4 { font-size: 0.82rem; color: #94a3b8; margin-bottom: 0.2rem; font-weight: 400; }
+  .contact-item a, .contact-item p {
+    font-size: 0.9rem; color: #e2e8f0;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item a:hover { color: #93c5fd; }
+  .socials { display: flex; gap: 0.75rem; margin-top: 1rem; }
+  .social-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #e2e8f0; text-decoration: none;
+    font-size: 0.82rem; font-weight: 400;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .social-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a1628;
+    text-align: center;
+    padding: 1.5rem 5%;
+    font-size: 0.8rem;
+    color: #4b5563;
+  }
+  footer a { color: #6b7280; text-decoration: none; }
+
+  /* ── FADE-IN ANIMATION ── */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-card { display: none; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    section { padding: 4rem 4%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><span></span>Open to opportunities</div>
+      <h1>Data Analyst,<br><em>Scientist</em> &amp;<br>AI Engineer</h1>
+      <p class="hero-desc">I turn messy data into clear decisions — building end-to-end pipelines, machine learning models, and analytics platforms that deliver real business value.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View my work</a>
+        <a href="#contact" class="btn-outline">Let's talk</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years experience</div>
+        </div>
+        <div>
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Projects shipped</div>
+        </div>
+        <div>
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Tools &amp; platforms</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <div class="hero-avatar">YN</div>
+        <h3>Your Name</h3>
+        <p class="role">Data &amp; AI Professional · Bengaluru, IN</p>
+        <div class="chip-grid">
+          <span class="chip blue">Python</span>
+          <span class="chip blue">SQL</span>
+          <span class="chip blue">Spark</span>
+          <span class="chip">ML/AI</span>
+          <span class="chip">dbt</span>
+          <span class="chip">Airflow</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">AWS</span>
+        </div>
+        <div class="avail-badge">Available for new roles</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label fade-up">What I work with</p>
+    <h2 class="fade-up">Skills &amp; Toolkit</h2>
+    <p class="section-desc fade-up">Spanning the full data lifecycle — from raw ingestion to insight delivery and model deployment.</p>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <div class="skill-icon">📊</div>
+        <h4>Data Analysis &amp; BI</h4>
+        <div class="tag-list">
+          <span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Pandas</span>
+          <span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Excel</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🤖</div>
+        <h4>Machine Learning &amp; AI</h4>
+        <div class="tag-list">
+          <span class="tag">Scikit-learn</span><span class="tag">TensorFlow</span><span class="tag">PyTorch</span>
+          <span class="tag">XGBoost</span><span class="tag">NLP</span><span class="tag">LLMs</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🔧</div>
+        <h4>Data Engineering</h4>
+        <div class="tag-list">
+          <span class="tag">Apache Spark</span><span class="tag">Airflow</span><span class="tag">dbt</span>
+          <span class="tag">Kafka</span><span class="tag">ETL/ELT</span><span class="tag">Databricks</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">☁️</div>
+        <h4>Cloud &amp; Infrastructure</h4>
+        <div class="tag-list">
+          <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Azure</span>
+          <span class="tag">S3 / BigQuery</span><span class="tag">Docker</span><span class="tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🗄️</div>
+        <h4>Databases</h4>
+        <div class="tag-list">
+          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Snowflake</span>
+          <span class="tag">MongoDB</span><span class="tag">Redshift</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">📐</div>
+        <h4>Analytics Engineering</h4>
+        <div class="tag-list">
+          <span class="tag">dbt</span><span class="tag">Data Modeling</span><span class="tag">Star Schema</span>
+          <span class="tag">Data Quality</span><span class="tag">Great Expectations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label fade-up">Work samples</p>
+    <h2 class="fade-up">Featured Projects</h2>
+    <p class="section-desc fade-up">A selection of end-to-end projects across analytics, ML, and data engineering.</p>
+    <div class="projects-grid">
+
+      <div class="project-card fade-up">
+        <div class="project-banner"></div>
+        <div class="project-body">
+          <div class="project-type">Machine Learning</div>
+          <h3>Customer Churn Prediction</h3>
+          <p>Built an end-to-end churn prediction pipeline using XGBoost and SHAP explainability. Reduced churn by 18% via targeted interventions driven by model output.</p>
+          <div class="tag-list" style="margin-bottom: 1rem;">
+            <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">SHAP</span><span class="tag">Airflow</span>
+          </div>
+          <div class="project-footer">
+            <div class="tag-list"></div>
+            <a href="#" class="project-link">View project →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-banner" style="background: linear-gradient(90deg, #0ea5e9, #6366f1);"></div>
+        <div class="project-body">
+          <div class="project-type">Data Engineering</div>
+          <h3>Real-time Sales Dashboard</h3>
+          <p>Designed a streaming data pipeline with Kafka + Spark Structured Streaming, loading to Snowflake and visualised in Power BI with sub-minute latency.</p>
+          <div class="tag-list" style="margin-bottom: 1rem;">
+            <span class="tag">Kafka</span><span class="tag">Spark</span><span class="tag">Snowflake</span><span class="tag">Power BI</span>
+          </div>
+          <div class="project-footer">
+            <div></div>
+            <a href="#" class="project-link">View project →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-banner" style="background: linear-gradient(90deg, #10b981, #0ea5e9);"></div>
+        <div class="project-body">
+          <div class="project-type">Analytics Engineering</div>
+          <h3>dbt Data Warehouse Modelling</h3>
+          <p>Refactored a legacy ELT process into a modular dbt project with staging, intermediate, and mart layers. Cut query cost by 40% and improved data team velocity.</p>
+          <div class="tag-list" style="margin-bottom: 1rem;">
+            <span class="tag">dbt</span><span class="tag">BigQuery</span><span class="tag">SQL</span><span class="tag">Looker</span>
+          </div>
+          <div class="project-footer">
+            <div></div>
+            <a href="#" class="project-link">View project →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-banner" style="background: linear-gradient(90deg, #f59e0b, #ef4444);"></div>
+        <div class="project-body">
+          <div class="project-type">NLP / Generative AI</div>
+          <h3>Internal Document Q&amp;A Bot</h3>
+          <p>Built a RAG-based Q&amp;A system over internal documentation using LangChain, OpenAI embeddings, and a FAISS vector store. Deployed as an internal Slack bot.</p>
+          <div class="tag-list" style="margin-bottom: 1rem;">
+            <span class="tag">LangChain</span><span class="tag">OpenAI</span><span class="tag">FAISS</span><span class="tag">Python</span>
+          </div>
+          <div class="project-footer">
+            <div></div>
+            <a href="#" class="project-link">View project →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-banner" style="background: linear-gradient(90deg, #8b5cf6, #ec4899);"></div>
+        <div class="project-body">
+          <div class="project-type">Data Analysis</div>
+          <h3>E-commerce Cohort Analysis</h3>
+          <p>Performed retention and cohort analysis on 2M+ transactions using Python &amp; SQL. Identified high-value segments driving a 22% increase in repeat-purchase rate.</p>
+          <div class="tag-list" style="margin-bottom: 1rem;">
+            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">PostgreSQL</span><span class="tag">Tableau</span>
+          </div>
+          <div class="project-footer">
+            <div></div>
+            <a href="#" class="project-link">View project →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-banner" style="background: linear-gradient(90deg, #0f1e35, #1e6fff);"></div>
+        <div class="project-body">
+          <div class="project-type">MLOps</div>
+          <h3>ML Model Monitoring Platform</h3>
+          <p>Implemented a model monitoring framework tracking data drift, feature drift, and prediction drift using Evidently AI, with Grafana dashboards and automated alerting.</p>
+          <div class="tag-list" style="margin-bottom: 1rem;">
+            <span class="tag">Evidently AI</span><span class="tag">MLflow</span><span class="tag">Grafana</span><span class="tag">Docker</span>
+          </div>
+          <div class="project-footer">
+            <div></div>
+            <a href="#" class="project-link">View project →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label fade-up">Career history</p>
+    <h2 class="fade-up">Work Experience</h2>
+    <p class="section-desc fade-up">Roles where I've built data products, led analyses, and deployed models in production.</p>
+    <div class="timeline">
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">Senior Data Analyst / Analytics Engineer</span>
+            <span class="exp-date">Jan 2023 – Present</span>
+          </div>
+          <div class="exp-company">Company Name · Bengaluru, IN</div>
+          <ul>
+            <li>Designed and owned the company's core dbt data models, reducing pipeline failure rate by 35%.</li>
+            <li>Built self-serve Power BI dashboards used by 50+ business stakeholders for weekly decision-making.</li>
+            <li>Collaborated with product teams to define KPIs and implement event tracking via Segment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">Data Scientist</span>
+            <span class="exp-date">Jun 2021 – Dec 2022</span>
+          </div>
+          <div class="exp-company">Company Name · Bengaluru, IN</div>
+          <ul>
+            <li>Developed and productionised a demand forecasting model (LSTM) reducing inventory costs by 12%.</li>
+            <li>Led A/B testing framework design — ran 20+ experiments, increasing feature adoption by 15%.</li>
+            <li>Automated weekly reporting using Python + Airflow, saving 8 analyst-hours per week.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">Data Analyst (Intern)</span>
+            <span class="exp-date">Jan 2021 – May 2021</span>
+          </div>
+          <div class="exp-company">Company Name · Remote</div>
+          <ul>
+            <li>Performed SQL-based analysis on customer behaviour data, surfacing insights for the growth team.</li>
+            <li>Built and maintained 3 Tableau dashboards tracking acquisition and retention metrics.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label fade-up">Academic background</p>
+    <h2 class="fade-up">Education</h2>
+    <p class="section-desc fade-up">Foundations in engineering and continuous learning through certifications.</p>
+    <div class="edu-grid">
+      <div class="edu-card fade-up">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-degree">B.E. / B.Tech — Computer Science / ECE / Related</div>
+        <div class="edu-school">Your University Name</div>
+        <div class="edu-year">2017 – 2021 · CGPA: X.X / 10</div>
+        <div class="edu-note">Relevant coursework: Statistics, Linear Algebra, DBMS, Algorithms</div>
+      </div>
+      <div class="edu-card fade-up">
+        <div class="edu-icon">📜</div>
+        <div class="edu-degree">AWS Certified Data Analytics – Specialty</div>
+        <div class="edu-school">Amazon Web Services</div>
+        <div class="edu-year">2023 · Credential ID: XXXX</div>
+      </div>
+      <div class="edu-card fade-up">
+        <div class="edu-icon">🏅</div>
+        <div class="edu-degree">Google Professional Data Engineer</div>
+        <div class="edu-school">Google Cloud</div>
+        <div class="edu-year">2022 · Credential ID: XXXX</div>
+      </div>
+      <div class="edu-card fade-up">
+        <div class="edu-icon">⚙️</div>
+        <div class="edu-degree">dbt Analytics Engineering Certification</div>
+        <div class="edu-school">dbt Labs</div>
+        <div class="edu-year">2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label fade-up">Say hello</p>
+    <h2 class="fade-up" style="color:#fff;">Let's Work Together</h2>
+    <p class="section-desc fade-up" style="color:#94a3b8;">Open to full-time roles, freelance data projects, and interesting conversations about data and AI.</p>
+    <div class="contact-grid">
+      <form class="contact-form fade-up" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" placeholder="Priya Sharma" />
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" placeholder="priya@company.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" placeholder="Job opportunity / Collaboration / ..." />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell me about the role or project..."></textarea>
+        </div>
+        <button type="submit" class="btn-send">Send message →</button>
+      </form>
+      <div class="contact-info fade-up">
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:yourname@email.com">yourname@email.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Location</h4>
+            <p>Bengaluru, Karnataka, India</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⏰</div>
+          <div>
+            <h4>Availability</h4>
+            <p>Open to full-time &amp; freelance · IST (UTC+5:30)</p>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.75rem;">Connect on</h4>
+          <div class="socials">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-btn">LinkedIn ↗</a>
+            <a href="https://github.com/yourusername" target="_blank" class="social-btn">GitHub ↗</a>
+            <a href="#" class="social-btn">Resume ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; built by <a href="#">Your Name</a> · Hosted free on GitHub Pages</p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Dummy form handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-send');
+    btn.textContent = 'Message sent ✓';
+    btn.style.background = '#16a34a';
+    setTimeout(() => { btn.textContent = 'Send message →'; btn.style.background = ''; }, 3000);
+  }
+</script>
+</body>
+</html>
